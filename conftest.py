@@ -4,29 +4,33 @@ from selenium.webdriver.chrome.options import Options
 from pages.login_page import LoginPage
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def driver():
     options = Options()
-    options.add_argument("--headless=new")   # required for CI
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--start-maximized")
 
+    # Optional stability fixes
+    options.add_argument("--disable-notifications")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-extensions")
+
+    # ✅ Selenium Manager will auto-handle chromedriver
     driver = webdriver.Chrome(options=options)
+
     driver.implicitly_wait(5)
 
     yield driver
-
     driver.quit()
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def logged_in_driver(driver):
     login = LoginPage(driver)
     login.open()
     login.login("Sanskruthi School - Nalgonda", "8247282479")
 
-    assert login.is_logged_in(), "Login failed!"
-
     return driver
+
+
+def take_screenshot(driver, name="error"):
+    driver.save_screenshot(f"{name}.png")

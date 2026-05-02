@@ -1,57 +1,55 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
+import time
 
 
-class LoginPage:
+class LoginPage(BasePage):
 
-    def __init__(self, driver):
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 15)
+    SEARCH_SCHOOL = (By.XPATH, "//div[contains(text(),'Search your school')]")
+    SCHOOL_INPUT = (By.XPATH, "//input[@placeholder='Type here...']")
+    PHONE_INPUT = (By.XPATH, "//input[contains(@placeholder,'mobile number')]")
+    LOGIN_BTN = (By.XPATH, "//div[text()='Login']")
+    HOME_TEXT = (By.XPATH, "//div[text()='Home']")
+
 
     def open(self):
         self.driver.get("https://teacher.englishgurukul.in/")
+        time.sleep(3)
+        self.wait.until(
+            EC.presence_of_element_located(self.SEARCH_SCHOOL)
+    )
 
     def login(self, school, phone):
-        # Click school dropdown
-        self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH, "//*[text()='Search your school']")
-        )).click()
 
-        # Enter school name
-        dropdown = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH, "//input[@placeholder='Type here...']")
-        ))
-        dropdown.send_keys(school)
+        self.click(self.SEARCH_SCHOOL)
 
-        # Select school
-        self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH, f"//*[text()='{school}']")
-        )).click()
+        self.send_keys(self.SCHOOL_INPUT, school)
 
-        # Enter phone number
-        phone_input = self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH, "//input[@placeholder='Enter your 10 digit mobile number']")
-        ))
-        phone_input.send_keys(phone)
+        self.wait.until(
+            EC.presence_of_element_located((By.XPATH, f"//div[contains(text(),'{school}')]"))
+    )
+        self.click(f"//div[contains(text(),'{school}')]")
 
-        # Click login
-        self.wait.until(EC.element_to_be_clickable(
-            (By.XPATH, "//*[text()='Login']")
-        )).click()
+        self.send_keys(self.PHONE_INPUT, phone)
 
-        # ✅ IMPORTANT: wait for page to load after login
-        self.wait.until(EC.presence_of_element_located(
-            (By.XPATH, "//span[contains(text(),'Home')]")
-        ))
+        self.click(self.LOGIN_BTN)
 
-    def is_logged_in(self):
-        try:
-            self.wait.until(
-                EC.presence_of_element_located(
-                    (By.XPATH, "//span[contains(text(),'Home')]")
-                )
-            )
+    
+        time.sleep(5)
+
+    # DEBUG
+        current_url = self.driver.current_url
+        print("Current URL:", current_url)
+
+    
+        if "teacher" in current_url:
+            print("Login successful")
             return True
-        except:
-            return False
+
+    
+        if self.is_visible("//span[contains(text(),'Home')]"):
+            print("Login successful (Home visible)")
+            return True
+
+        raise Exception("Login failed")

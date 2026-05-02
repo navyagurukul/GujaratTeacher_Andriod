@@ -1,0 +1,785 @@
+Grades: ['Grade 1', 'Grade 1Newton', 'Grade 1 Pascal', 'Grade 2 Pascal', 'Grade 2 Newton', 'Grade 3 Newton', 'Grade 4', 'Grade 3', 'Grade 8', 'Grade 2', 'Grade 6', 'Grade 5', 'Grade 3 Pascal', 'Grade 7']
+Grade selected: Grade 1
+PDFs found: 22 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 1Newton
+PDFs found: 73 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 1 Pascal
+PDFs found: 61 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 2 Pascal
+PDFs found: 67 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 2 Newton
+PDFs found: 76 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 3 Newton
+PDFs found: 67 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 4
+PDFs found: 67 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 3
+PDFs found: 81 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 8
+PDFs found: 81 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 2
+PDFs found: 84 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 6
+PDFs found: 86 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 5
+PDFs found: 87 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 3 Pascal
+PDFs found: 89 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+Grade selected: Grade 7
+PDFs found: 81 (processing 2)
+PDF 1 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+
+PDF 2 clicked
+Video opened
+Video playback failed: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x79c733+10b73]
+	chromedriver!GetHandleVerifier [0x79c864+10ca4]
+	chromedriver!(No symbol) [0x572100]
+	chromedriver!(No symbol) [0x5bacba]
+	chromedriver!(No symbol) [0x5baf5b]
+	chromedriver!(No symbol) [0x5fd9c2]
+	chromedriver!(No symbol) [0x5ddc64]
+	chromedriver!(No symbol) [0x5fb1f4]
+	chromedriver!(No symbol) [0x5dd9b6]
+	chromedriver!(No symbol) [0x5b0339]
+	chromedriver!(No symbol) [0x5b10f4]
+	chromedriver!GetHandleVerifier [0x9ffe04+274244]
+	chromedriver!GetHandleVerifier [0x9fb459+26f899]
+	chromedriver!GetHandleVerifier [0xa19bd5+28e015]
+	chromedriver!GetHandleVerifier [0x7b7188+2b5c8]
+	chromedriver!GetHandleVerifier [0x7bf23d+3367d]
+	chromedriver!GetHandleVerifier [0x7a5138+19578]
+	chromedriver!GetHandleVerifier [0x7a5302+19742]
+	chromedriver!GetHandleVerifier [0x78e48f+28cf]
+	KERNEL32!BaseThreadInitThunk [0x756e5d49+19]
+	ntdll!RtlInitializeExceptionChain [0x7778d83b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x7778d7c1+231]
+

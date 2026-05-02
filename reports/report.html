@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
     <meta charset="utf-8"/>
     <title id="head-title">report.html</title>
-      <style type="text/css">body {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 12px;
+        <style type="text/css">body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
   /* do not increase min-width as some may use split screens */
-  min-width: 800px;
-  color: #999;
+    min-width: 800px;
+    color: #999;
 }
 
 h1 {
-  font-size: 24px;
-  color: black;
+    font-size: 24px;
+    color: black;
 }
 
 h2 {
-  font-size: 16px;
-  color: black;
+    font-size: 16px;
+    color: black;
 }
 
 p {
-  color: black;
+    color: black;
 }
 
 a {
-  color: #999;
+    color: #999;
 }
 
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 /******************************
  * SUMMARY INFORMATION
  ******************************/
 #environment td {
-  padding: 5px;
-  border: 1px solid #e6e6e6;
-  vertical-align: top;
+    padding: 5px;
+    border: 1px solid #e6e6e6;
+    vertical-align: top;
 }
 #environment tr:nth-child(odd) {
-  background-color: #f6f6f6;
+    background-color: #f6f6f6;
 }
 #environment ul {
-  margin: 0;
-  padding: 0 20px;
+    margin: 0;
+    padding: 0 20px;
 }
 
 /******************************
@@ -54,7 +54,7 @@ table {
  ******************************/
 span.passed,
 .passed .col-result {
-  color: green;
+    color: green;
 }
 
 span.skipped,
@@ -63,7 +63,7 @@ span.rerun,
 .skipped .col-result,
 .xfailed .col-result,
 .rerun .col-result {
-  color: orange;
+    color: orange;
 }
 
 span.error,
@@ -72,11 +72,11 @@ span.xpassed,
 .error .col-result,
 .failed .col-result,
 .xpassed .col-result {
-  color: red;
+    color: red;
 }
 
 .col-links__extra {
-  margin-right: 3px;
+    margin-right: 3px;
 }
 
 /******************************
@@ -91,66 +91,66 @@ span.xpassed,
  * 1. Table Layout
  *------------------*/
 #results-table {
-  border: 1px solid #e6e6e6;
-  color: #999;
-  font-size: 12px;
-  width: 100%;
+    border: 1px solid #e6e6e6;
+    color: #999;
+    font-size: 12px;
+    width: 100%;
 }
 #results-table th,
 #results-table td {
-  padding: 5px;
-  border: 1px solid #e6e6e6;
-  text-align: left;
+    padding: 5px;
+    border: 1px solid #e6e6e6;
+    text-align: left;
 }
 #results-table th {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 /*------------------
  * 2. Extra
  *------------------*/
 .logwrapper {
-  max-height: 230px;
-  overflow-y: scroll;
-  background-color: #e6e6e6;
+    max-height: 230px;
+    overflow-y: scroll;
+    background-color: #e6e6e6;
 }
 .logwrapper.expanded {
-  max-height: none;
+    max-height: none;
 }
 .logwrapper.expanded .logexpander:after {
-  content: "collapse [-]";
+    content: "collapse [-]";
 }
 .logwrapper .logexpander {
-  z-index: 1;
-  position: sticky;
-  top: 10px;
-  width: max-content;
-  border: 1px solid;
-  border-radius: 3px;
-  padding: 5px 7px;
-  margin: 10px 0 10px calc(100% - 80px);
-  cursor: pointer;
-  background-color: #e6e6e6;
+    z-index: 1;
+    position: sticky;
+    top: 10px;
+    width: max-content;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 5px 7px;
+    margin: 10px 0 10px calc(100% - 80px);
+    cursor: pointer;
+    background-color: #e6e6e6;
 }
 .logwrapper .logexpander:after {
-  content: "expand [+]";
+    content: "expand [+]";
 }
 .logwrapper .logexpander:hover {
-  color: #000;
-  border-color: #000;
+    color: #000;
+    border-color: #000;
 }
 .logwrapper .log {
-  min-height: 40px;
-  position: relative;
-  top: -50px;
-  height: calc(100% + 50px);
-  border: 1px solid #e6e6e6;
-  color: black;
-  display: block;
-  font-family: "Courier New", Courier, monospace;
-  padding: 5px;
-  padding-right: 80px;
-  white-space: pre-wrap;
+    min-height: 40px;
+    position: relative;
+    top: -50px;
+    height: calc(100% + 50px);
+    border: 1px solid #e6e6e6;
+    color: black;
+    display: block;
+    font-family: "Courier New", Courier, monospace;
+    padding: 5px;
+    padding-right: 80px;
+    white-space: pre-wrap;
 }
 
 div.media {
@@ -242,27 +242,27 @@ div.media {
  * 3. Sorting items
  *------------------*/
 .sortable {
-  cursor: pointer;
+    cursor: pointer;
 }
 .sortable.desc:after {
-  content: " ";
-  position: relative;
-  left: 5px;
-  bottom: -12.5px;
-  border: 10px solid #4caf50;
-  border-bottom: 0;
-  border-left-color: transparent;
-  border-right-color: transparent;
+    content: " ";
+    position: relative;
+    left: 5px;
+    bottom: -12.5px;
+    border: 10px solid #4caf50;
+    border-bottom: 0;
+    border-left-color: transparent;
+    border-right-color: transparent;
 }
 .sortable.asc:after {
-  content: " ";
-  position: relative;
-  left: 5px;
-  bottom: 12.5px;
-  border: 10px solid #4caf50;
-  border-top: 0;
-  border-left-color: transparent;
-  border-right-color: transparent;
+    content: " ";
+    position: relative;
+    left: 5px;
+    bottom: 12.5px;
+    border: 10px solid #4caf50;
+    border-top: 0;
+    border-left-color: transparent;
+    border-right-color: transparent;
 }
 
 .hidden, .summary__reload__button.hidden {

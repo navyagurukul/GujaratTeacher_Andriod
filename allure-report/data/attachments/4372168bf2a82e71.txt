@@ -1,0 +1,122 @@
+✅ Opened Class Report
+
+📘 Topic Report Flow
+📚 Grades found: ['Grade 1', 'Grade 1Newton', 'Grade 1 Pascal', 'Grade 2 Pascal', 'Grade 2 Newton', 'Grade 3 Newton', 'Grade 4', 'Grade 3', 'Grade 8', 'Grade 2', 'Grade 6', 'Grade 5', 'Grade 3 Pascal', 'Grade 7']
+
+🎯 Processing: Grade 1
+❌ Failed Grade 1: Message: 
+
+
+🎯 Processing: Grade 1Newton
+❌ Failed Grade 1Newton: Message: 
+
+
+🎯 Processing: Grade 1 Pascal
+❌ Failed Grade 1 Pascal: Message: 
+
+
+🎯 Processing: Grade 2 Pascal
+❌ Failed Grade 2 Pascal: Message: 
+
+
+🎯 Processing: Grade 2 Newton
+❌ Failed Grade 2 Newton: Message: 
+
+
+🎯 Processing: Grade 3 Newton
+❌ Failed Grade 3 Newton: Message: 
+
+
+🎯 Processing: Grade 4
+❌ Failed Grade 4: Message: 
+
+
+🎯 Processing: Grade 3
+❌ Failed Grade 3: Message: 
+
+
+🎯 Processing: Grade 8
+❌ Failed Grade 8: Message: 
+
+
+🎯 Processing: Grade 2
+❌ Failed Grade 2: Message: 
+
+
+🎯 Processing: Grade 6
+❌ Failed Grade 6: Message: 
+
+
+🎯 Processing: Grade 5
+❌ Failed Grade 5: Message: 
+
+
+🎯 Processing: Grade 3 Pascal
+❌ Failed Grade 3 Pascal: Message: 
+
+
+🎯 Processing: Grade 7
+❌ Failed Grade 7: Message: 
+
+✅ Switched to Test Report
+
+🧪 Test Report Flow
+📚 Grades found: ['Grade 1', 'Grade 1Newton', 'Grade 1 Pascal', 'Grade 2 Pascal', 'Grade 2 Newton', 'Grade 3 Newton', 'Grade 4', 'Grade 3', 'Grade 8', 'Grade 2', 'Grade 6', 'Grade 5', 'Grade 3 Pascal', 'Grade 7']
+
+🎯 Processing: Grade 1
+❌ Failed Grade 1: Message: 
+
+
+🎯 Processing: Grade 1Newton
+❌ Failed Grade 1Newton: Message: 
+
+
+🎯 Processing: Grade 1 Pascal
+❌ Failed Grade 1 Pascal: Message: 
+
+
+🎯 Processing: Grade 2 Pascal
+❌ Failed Grade 2 Pascal: Message: 
+
+
+🎯 Processing: Grade 2 Newton
+❌ Failed Grade 2 Newton: Message: 
+
+
+🎯 Processing: Grade 3 Newton
+❌ Failed Grade 3 Newton: Message: 
+
+
+🎯 Processing: Grade 4
+❌ Failed Grade 4: Message: 
+
+
+🎯 Processing: Grade 3
+❌ Failed Grade 3: Message: 
+
+
+🎯 Processing: Grade 8
+❌ Failed Grade 8: Message: 
+
+
+🎯 Processing: Grade 2
+❌ Failed Grade 2: Message: 
+
+
+🎯 Processing: Grade 6
+❌ Failed Grade 6: Message: 
+
+
+🎯 Processing: Grade 5
+❌ Failed Grade 5: Message: 
+
+
+🎯 Processing: Grade 3 Pascal
+❌ Failed Grade 3 Pascal: Message: 
+
+
+🎯 Processing: Grade 7
+❌ Failed Grade 7: Message: 
+
+✅ Assessment opened
+✅ Class Report Flow Completed Successfully

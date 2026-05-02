@@ -1,30 +1,41 @@
-name: Run Selenium Tests
+name: Teacher Web Automation CI
 
 on:
-    push:
-        branches: [ main ]
-    pull_request:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-    test:
-        runs-on: windows-latest
+  test:
+    runs-on: ubuntu-latest
 
     steps:
-        - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v5
 
-        - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-        python-version: '3.11'
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
 
-        - name: Install dependencies
-        run: |
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
         pip install -r requirements.txt
 
-        - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
+    - name: Install Chrome
+      uses: browser-actions/setup-chrome@v1
 
-        - name: Run tests
-        run: |
-        pytest -n 2 --alluredir=allure-results
+    - name: Run Selenium tests
+      run: |
+        pytest tests/ -v --tb=short --capture=tee-sys
+
+    - name: Upload screenshots (on failure)
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: screenshots
+        path: |
+          *.png
+          reports/*.png
