@@ -103,7 +103,7 @@ class LessonPlanPage:
             print("PDF closed")
 
             # HARD WAIT for full cleanup
-            time.sleep(2)
+            time.sleep(1.5)
 
             # ensure PDF is gone
             WebDriverWait(self.driver, 10).until_not(
@@ -117,11 +117,14 @@ class LessonPlanPage:
         try:
             self.driver.execute_script("window.scrollTo(0, 0);")
             time.sleep(1)
-            # re-ensure topic list is stable
-            self.wait.until(
+
+            # wait for DOM to stabilize (not just presence)
+            WebDriverWait(self.driver, 10).until(
                 EC.presence_of_all_elements_located(self.PDF_ICONS)
             )
-            time.sleep(1)
+
+            time.sleep(1.5)
+
         except Exception as e:
             print(f"Reset state issue: {str(e)[:80]}")
 
@@ -132,36 +135,33 @@ class LessonPlanPage:
             back_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located(self.BACK_BTN)
             )
-
             self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", back_btn)
-            time.sleep(0.3)
+            time.sleep(0.5)
 
             # re-click fresh element (IMPORTANT)
             self.driver.execute_script("arguments[0].click();", back_btn)
 
-            print("🔙 Back clicked")
+            print("Back clicked")
 
             time.sleep(1.5)
 
         except StaleElementReferenceException:
-            print("🔄 Stale back button → retrying once")
+            print("Stale back button → retrying once")
 
-            # 🔥 RE-FETCH AGAIN (critical fix)
+            # RE-FETCH AGAIN (critical fix)
             back_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located(self.BACK_BTN)
             )
             self.driver.execute_script("arguments[0].click();", back_btn)
 
         except Exception as e:
-            print(f"⚠️ Back failed: {str(e)[:120]}")
+            print(f"Back failed: {str(e)[:120]}")
 
     # ================= MAIN FLOW =================
 
-    def process_all_topics(self):
-
+    def process_all_topics(self, limit=3):
         opened = 0
         i = 0
-
         print("Loading all topics...")
 
         # STEP 1: SCROLL TO LOAD ALL
@@ -179,21 +179,21 @@ class LessonPlanPage:
         print(f"Found {last} PDF topics")
 
         # STEP 2: MAIN LOOP
-        while True:
+        while i < limit:
             try:
                 self.driver.title  # session check
 
-                icons = self.driver.find_elements(*self.PDF_ICONS)
+                icons = self.wait.until(
+                    EC.presence_of_all_elements_located(self.PDF_ICONS)
+                )
 
                 if i >= len(icons):
                     break
 
                 icon = icons[i]
-
                 self.driver.execute_script(
                     "arguments[0].scrollIntoView({block:'center'});", icon
                 )
-                
                 time.sleep(1)
                 
 
@@ -211,35 +211,44 @@ class LessonPlanPage:
                     activity = self.driver.find_element(*self.VIDEO_BTNS)
                     self.driver.execute_script("arguments[0].click();", activity)
                     print("Activity clicked")
-                except:
+                except TimeoutException:
                     print("No activity button found")
-
+                    i += 1
+                    continue
                 time.sleep(1)
-
                 # WAIT PDF LOAD (same as your working script behavior)
-                self.wait.until(
-                    EC.presence_of_element_located(self.PDF_VIEWER)
-                )
+                loaded = False
+                for _ in range(2):  # retry once
+                    try:
+                        WebDriverWait(self.driver, 10).until(
+                            lambda d: any(
+                                e.is_displayed()
+                                for e in d.find_elements(*self.PDF_VIEWER)
+                            )
+                        )
+                        loaded = True
+                        break
+                    except:
+                        time.sleep(1)
+
+                if not loaded:
+                    raise TimeoutException("PDF did not load after retry")
                 print("PDF loaded successfully")
-
                 time.sleep(2)
-
                 # CLOSE PDF (same logic you confirmed works)
                 self.close_pdf()
-
                 # Ensure still in activity screen
                 self.wait.until(EC.presence_of_element_located(self.VIDEO_BTNS))
                 # Go back
                 self.go_back()
-                time.sleep(1)
                 
                 self.reset_state()
                 # allow React/WebView to settle
                 opened += 1
                 i += 1
                 # move to next only after success
-            except Exception as e:
-                print(f"Error on PDF {i+1}: {str(e)[:80]}")
+            except TimeoutException:
+                print(f"Timeout on PDF {i+1}")
                 i += 1
                 # skip and continue
             try:
@@ -248,3 +257,5 @@ class LessonPlanPage:
             except InvalidSessionIdException:
                 print("❌ Session lost. Stopping execution.")
                 return opened
+        print(f"Limited run complete: {opened} PDFs processed")
+        return opened

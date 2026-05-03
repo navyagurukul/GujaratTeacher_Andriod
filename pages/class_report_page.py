@@ -241,3 +241,4 @@ class ClassReportPage(BasePage):
         self.enable_test_report()
         self.select_all_grades()
         self.select_assessment_for_each_grade()
+        print("Completed full Class Report flow")

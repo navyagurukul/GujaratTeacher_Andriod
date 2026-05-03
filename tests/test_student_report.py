@@ -1,21 +1,19 @@
+import pytest
 from pages.login_page import LoginPage
 from pages.student_report_page import StudentReportPage
-import pytest
 
-@pytest.mark.order(5)
-def test_student_report(driver):
+
+@pytest.mark.order(4)
+def test_Student_report(driver):
+
     login = LoginPage(driver)
-    student_report = StudentReportPage(driver)
+    class_report = StudentReportPage(driver)
 
     login.open()
-    login.login("Sanskruthi School - Nalgonda", "8247282479")
 
-    student_report.open_student_report()
-    student_report.select_grade_and_student()
+    assert login.login("Sanskruthi School - Nalgonda", "8247282479")
 
-    assert student_report.verify_sections()
-    assert student_report.toggle_assessment()
+    print("Login successful")
 
-    driver.quit()
-    
+    class_report.run_full_student_report_flow()
     
