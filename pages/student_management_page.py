@@ -113,7 +113,7 @@ class StudentManagementPage(BasePage):
         print("🔙 Clicking Back...")
 
         try:
-            back_btn = WebDriverWait(self.driver, 10).until(
+            back_btn = WebDriverWait(self.driver, 15).until(
                 EC.element_to_be_clickable(self.BACK_BTN)
             )
 
@@ -140,7 +140,7 @@ class StudentManagementPage(BasePage):
         print("🔙 Navigating back...")
 
         try:
-            back_btn = WebDriverWait(self.driver, 8).until(
+            back_btn = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable(self.BACK_BTN)
             )
 
@@ -234,7 +234,7 @@ class StudentManagementPage(BasePage):
 
         self.send_keys(self.STUDENT_NAME_INPUT, "qa test")
         self.send_keys(self.FATHER_NAME_INPUT, "test")
-        self.send_keys(self.MOBILE_INPUT, "9876543210")
+        self.send_keys(self.MOBILE_INPUT, "9876543215")
 
         self.select_dropdown_option(self.GENDER_DROPDOWN, "Female")
         time.sleep(1)
