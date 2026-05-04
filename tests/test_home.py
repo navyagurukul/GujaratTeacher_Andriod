@@ -3,6 +3,7 @@ from pages.home_page import HomePage
 from selenium.webdriver.common.by import By
 import pytest
 @pytest.mark.order(2)
+@pytest.mark.regression
 
 def test_home_page(driver):
 

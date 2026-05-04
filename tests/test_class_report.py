@@ -4,6 +4,7 @@ from pages.class_report_page import ClassReportPage
 
 
 @pytest.mark.order(4)
+@pytest.mark.regression
 def test_class_report(driver):
 
     login = LoginPage(driver)

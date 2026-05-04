@@ -4,6 +4,7 @@ from pages.login_page import LoginPage
 
 
 @pytest.mark.order(3)
+@pytest.mark.regression
 class TestSidebarPage:
 
     def test_sidebar_navigation(self, driver):
