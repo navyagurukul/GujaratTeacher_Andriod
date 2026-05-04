@@ -237,10 +237,11 @@ class StudentManagementPage(BasePage):
         self.send_keys(self.MOBILE_INPUT, "9876543210")
 
         self.select_dropdown_option(self.GENDER_DROPDOWN, "Female")
-        time.sleep(0.6)
+        time.sleep(1)
         self.select_any_option(self.GRADE_OPTIONS)
         time.sleep(1.5)
         self.select_dropdown_option(self.LANGUAGE_DROPDOWN, "English")
+        time.sleep(0.5)
 
         self.click(self.SUBMIT_REVIEW_BTN)
         self.click_confirm()
