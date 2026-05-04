@@ -241,7 +241,7 @@ class StudentManagementPage(BasePage):
         self.select_any_option(self.GRADE_OPTIONS)
         time.sleep(1.5)
         self.select_dropdown_option(self.LANGUAGE_DROPDOWN, "English")
-        time.sleep(0.5)
+        time.sleep(0.6)
 
         self.click(self.SUBMIT_REVIEW_BTN)
         self.click_confirm()
