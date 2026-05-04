@@ -2,6 +2,7 @@ import pytest
 from pages.lesson_plan_page import LessonPlanPage
 import time
 @pytest.mark.order(3)
+@pytest.mark.smoke
 @pytest.mark.regression
 
 class TestLessonPlan:

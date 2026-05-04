@@ -4,6 +4,7 @@ from pages.student_report_page import StudentReportPage
 
 
 @pytest.mark.order(4)
+@pytest.mark.smoke
 @pytest.mark.regression
 def test_Student_report(driver):
 

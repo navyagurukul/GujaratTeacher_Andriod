@@ -4,6 +4,7 @@ import pytest
 
 
 @pytest.mark.order(6)
+@pytest.mark.smoke
 @pytest.mark.regression
 def test_student_management(driver):
     login = LoginPage(driver)
