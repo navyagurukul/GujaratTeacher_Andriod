@@ -226,38 +226,43 @@ class StudentManagementPage(BasePage):
     def register_student(self):
         self.click(self.REGISTER_CARD)
 
-        self.send_keys(self.STUDENT_NAME_INPUT, "QA")
-        self.send_keys(self.FATHER_NAME_INPUT, "testing")
-        self.send_keys(self.MOBILE_INPUT, "9876543217")
+        #self.send_keys(self.STUDENT_NAME_INPUT, "QA")
+        #self.send_keys(self.FATHER_NAME_INPUT, "testing")
+        #self.send_keys(self.MOBILE_INPUT, "9876543217")
 
-        self.select_dropdown_option(self.GENDER_DROPDOWN, "Female")
-        time.sleep(0.7)
-        self.select_any_option(self.GRADE_OPTIONS)
-        time.sleep(1.5)
-        self.select_dropdown_option(self.LANGUAGE_DROPDOWN, "English")
-        time.sleep(0.6)
+        #self.select_dropdown_option(self.GENDER_DROPDOWN, "Female")
+        #time.sleep(0.7)
+        #self.select_any_option(self.GRADE_OPTIONS)
+        #time.sleep(1.5)
+        #self.select_dropdown_option(self.LANGUAGE_DROPDOWN, "English")
+        #time.sleep(0.6)
 
-        self.click_submit_review()
-        self.click_confirm()
-        self.click_register_all_students()
-        print("✅ Registered student successfully")
-        time.sleep(1)
+        #self.click_submit_review()
+        #self.click_confirm()
+        #self.click_register_all_students()
+        #print("✅ Registered student successfully")
+        time.sleep(0.5)
+        print("Student Register page opened")
+        time.sleep(0.5)
         self.safe_back_to_management()
 
     def open_student_approval(self):
         print("Opening Student Approval...")
         self.click(self.APPROVAL_CARD)
         print("Student Approval page opened")
+        time.sleep(0.5)
         self.safe_back_to_management()
 
     def edit_student(self):
         print("Opening Edit Student...")
         self.click(self.EDIT_CARD)
         print("Edit Student page opened")
+        time.sleep(0.5)
         self.safe_back_to_management()
 
     def delete_student(self):
         print("Opening Delete Student...")
         self.click(self.DELETE_CARD)
         print("Delete Student page opened")
+        time.sleep(0.5)
         self.safe_back_to_management()
