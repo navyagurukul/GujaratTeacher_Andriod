@@ -51,11 +51,7 @@ class StudentManagementPage(BasePage):
     )
 
     SUBMIT_REVIEW_BTN = (By.XPATH, "//div[normalize-space(.)='Submit & Review']")
-    
-    CONFIRM_BTN = (
-        By.XPATH,
-        "//div[normalize-space()='Confirm']"
-    )
+    CONFIRM_BUTTON = (By.XPATH, "//button[contains(.,'Confirm')]")
     
     REGISTER_ALL_BTN = (
         By.XPATH,
@@ -108,12 +104,12 @@ class StudentManagementPage(BasePage):
                 return btn
 
         raise Exception("❌ No visible back button found")
-
+    
     def go_back_to_management(self):
         print("🔙 Clicking Back...")
 
         try:
-            back_btn = WebDriverWait(self.driver, 15).until(
+            back_btn = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable(self.BACK_BTN)
             )
 
@@ -140,7 +136,7 @@ class StudentManagementPage(BasePage):
         print("🔙 Navigating back...")
 
         try:
-            back_btn = WebDriverWait(self.driver, 10).until(
+            back_btn = WebDriverWait(self.driver, 8).until(
                 EC.element_to_be_clickable(self.BACK_BTN)
             )
 
@@ -184,46 +180,44 @@ class StudentManagementPage(BasePage):
             By.XPATH, "//div[@tabindex='0']//div[starts-with(normalize-space(),'Grade')]" )))
         if not options:
             raise Exception("❌ No grade options found")
-        
         option = options[1]
         print(f"Selected: {option.text}")
         self.driver.execute_script("arguments[0].click();", option)
         time.sleep(1)
         
     def click_submit_review(self):
-        submit_btn = self.wait.until(
-            EC.presence_of_element_located(self.SUBMIT_REVIEW_BTN)
-        )
-        self.driver.execute_script("arguments[0].scrollIntoView({block:'center'});", submit_btn)
-        self.driver.execute_script("arguments[0].click();", submit_btn)
+        print("Clicking Submit & Review...")
+        btn = self.wait.until( EC.element_to_be_clickable(self.SUBMIT_REVIEW_BTN)
+                        )
+        self.driver.execute_script( "arguments[0].scrollIntoView({block:'center'});", btn )
+        self.driver.execute_script("arguments[0].click();", btn)
+        print("submit & review clicked")
         
     def click_confirm(self):
         print("Clicking Confirm...")
 
-        btn = self.wait.until(
-            EC.element_to_be_clickable(self.CONFIRM_BTN)
+        confirm = WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located(self.CONFIRM_BUTTON)
         )
+        print("seen Confirm...")
+        self.driver.execute_script( "arguments[0].scrollIntoView({block:'center'});", confirm )
+        self.driver.execute_script("arguments[0].click();", confirm)
 
-        self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});", btn
-        )
-
-        # RN Web → always safer with JS click
-        self.driver.execute_script("arguments[0].click();", btn)
-        
+        print("Confirm clicked")
+            
     def click_register_all_students(self):
         print("Clicking Register All Students...")
 
-        btn = self.wait.until(
+        register_btn = self.wait.until(
             EC.element_to_be_clickable(self.REGISTER_ALL_BTN)
         )
 
         self.driver.execute_script(
-            "arguments[0].scrollIntoView({block:'center'});", btn
+            "arguments[0].scrollIntoView({block:'center'});", register_btn
         )
 
-        self.driver.execute_script("arguments[0].click();", btn)
-        
+        self.driver.execute_script("arguments[0].click();", register_btn)
+            
     def debug_pause(self, seconds=2):
         if getattr(self, "DEBUG_MODE", True):
             time.sleep(seconds)
@@ -232,39 +226,38 @@ class StudentManagementPage(BasePage):
     def register_student(self):
         self.click(self.REGISTER_CARD)
 
-        self.send_keys(self.STUDENT_NAME_INPUT, "qa test")
-        self.send_keys(self.FATHER_NAME_INPUT, "test")
-        self.send_keys(self.MOBILE_INPUT, "9876543215")
+        self.send_keys(self.STUDENT_NAME_INPUT, "QA")
+        self.send_keys(self.FATHER_NAME_INPUT, "testing")
+        self.send_keys(self.MOBILE_INPUT, "9876543217")
 
         self.select_dropdown_option(self.GENDER_DROPDOWN, "Female")
-        time.sleep(1)
+        time.sleep(0.7)
         self.select_any_option(self.GRADE_OPTIONS)
         time.sleep(1.5)
         self.select_dropdown_option(self.LANGUAGE_DROPDOWN, "English")
         time.sleep(0.6)
 
-        self.click(self.SUBMIT_REVIEW_BTN)
+        self.click_submit_review()
         self.click_confirm()
         self.click_register_all_students()
-
-        print("Registered student successfully")
-        # 🔥 SINGLE LINE instead of big block
+        print("✅ Registered student successfully")
+        time.sleep(1)
         self.safe_back_to_management()
 
     def open_student_approval(self):
-        self.safe_click(self.APPROVAL_CARD)
+        print("Opening Student Approval...")
+        self.click(self.APPROVAL_CARD)
         print("Student Approval page opened")
-        
         self.safe_back_to_management()
 
     def edit_student(self):
-        self.safe_click(self.EDIT_CARD)
+        print("Opening Edit Student...")
+        self.click(self.EDIT_CARD)
         print("Edit Student page opened")
-
         self.safe_back_to_management()
-        
-    def delete_student(self):
-        self.safe_click(self.DELETE_CARD)
-        print("Delete Student page opened")
 
+    def delete_student(self):
+        print("Opening Delete Student...")
+        self.click(self.DELETE_CARD)
+        print("Delete Student page opened")
         self.safe_back_to_management()
