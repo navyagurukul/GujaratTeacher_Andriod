@@ -40,11 +40,21 @@ jobs:
         run: |
           pytest -m smoke -n auto --alluredir=allure-results
 
+
+      - name: Install Allure CLI
+        run: |
+          npm install -g allure-commandline --save-dev
+          allure --version
+
+      - name: Generate Allure Report
+        run: |
+          allure generate allure-results --clean -o allure-report
+
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
           name: smoke-allure-report
-          path: allure-results
+          path: allure-report
 
 
   # ===================== REGRESSION TEST JOB =====================
@@ -78,9 +88,13 @@ jobs:
         run: |
           pytest -m regression -n auto --alluredir=allure-results
 
+      - name: Install Allure CLI
+        run: |
+          npm install -g allure-commandline --save-dev
+          allure --version
+
       - name: Generate Allure Report
         run: |
-          pip install allure-pytest
           allure generate allure-results --clean -o allure-report
 
       - name: Upload Allure Report
