@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/navyagurukul/TeacherWebAutomation.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'pytest -m regression -n auto --alluredir=allure-results'
+            }
+        }
+
+        stage('Publish Reports') {
+            steps {
+                echo "Add Allure or HTML report steps here"
+            }
+        }
+    }
+}
