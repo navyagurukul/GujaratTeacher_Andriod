@@ -242,7 +242,7 @@ class StudentManagementPage(BasePage):
         #self.click_confirm()
         #self.click_register_all_students()
         #print("✅ Registered student successfully")
-        time.sleep(1)
+        time.sleep(0.7)
         print("Student Register page opened")
         time.sleep(0.5)
         self.safe_back_to_management()
