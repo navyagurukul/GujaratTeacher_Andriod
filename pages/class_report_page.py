@@ -26,13 +26,13 @@ class ClassReportPage(BasePage):
 
     ASSESSMENT_DROPDOWN = (
     By.XPATH,
-    "//div[@tabindex='0'][.//div[contains(text(),'Assessment') or contains(.,'Assesment')]]"
-)
+        "//div[@tabindex='0'][.//div[contains(text(),'Assessment') or contains(.,'Assesment')]]"
+    )
 
     ASSESSMENT_OPTIONS = (
-    By.XPATH,
-    "//div[@tabindex='0' and (contains(.,'Assessment') or contains(.,'Assesment'))]"
-)
+        By.XPATH,
+        "//div[@tabindex='0' and (contains(.,'Assessment') or contains(.,'Assesment'))]"
+    )
     
     
     # ================= ACTIONS =================

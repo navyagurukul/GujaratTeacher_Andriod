@@ -13,8 +13,8 @@ class TestSidebarPage:
         sidebar = SidebarPage(driver)
 
         login.open()
-        login.login("24070609203-NAVA VATAVA PRI. SCH.", "8247208247")
+        login.login("Sanskruthi School - Nalgonda", "8247282479")
 
         sidebar.click_all_sidebar_items()
 
-        print("✅ Sidebar navigation test completed")
+        print("Sidebar navigation test completed")

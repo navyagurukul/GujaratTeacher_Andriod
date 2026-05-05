@@ -255,7 +255,7 @@ class LessonPlanPage:
                 self.driver.title
                 # simple heartbeat check
             except InvalidSessionIdException:
-                print("❌ Session lost. Stopping execution.")
+                print("Session lost. Stopping execution.")
                 return opened
         print(f"Limited run complete: {opened} PDFs processed")
         return opened

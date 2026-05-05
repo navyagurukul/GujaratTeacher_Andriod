@@ -17,7 +17,7 @@ def driver():
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--headless=new")
 
-    # ✅ Selenium Manager will auto-handle chromedriver
+    #  Selenium Manager will auto-handle chromedriver
     driver = webdriver.Chrome(options=options)
     
 
@@ -31,7 +31,7 @@ def driver():
 def logged_in_driver(driver):
     login = LoginPage(driver)
     login.open()
-    login.login("24070609203-NAVA VATAVA PRI. SCH.", "8247208247")
+    login.login("Sanskruthi School - Nalgonda", "8247282479")
 
     return driver
 

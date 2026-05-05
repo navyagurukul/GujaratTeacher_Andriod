@@ -13,7 +13,7 @@ def test_Student_report(driver):
 
     login.open()
 
-    assert login.login("24070609203-NAVA VATAVA PRI. SCH.", "8247208247")
+    assert login.login("Sanskruthi School - Nalgonda", "8247282479")
 
     print("Login successful")
 

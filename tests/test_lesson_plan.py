@@ -27,7 +27,7 @@ class TestLessonPlan:
         total_verified = 0
 
         for grade in grades:
-            print(f"\n--- 📂 STARTING GRADE: {grade} ---")
+            print(f"\n--- STARTING GRADE: {grade} ---")
 
             try:
                 # Step 3: Select grade
@@ -38,10 +38,10 @@ class TestLessonPlan:
 
                 total_verified += count
 
-                print(f"✅ Finished {grade}. Topics verified: {count}")
+                print(f"Finished {grade}. Topics verified: {count}")
 
             except Exception as e:
-                print(f"❌ Critical error processing {grade}: {str(e)[:100]}")
+                print(f"Critical error processing {grade}: {str(e)[:100]}")
 
                 # SAFE recovery (avoid crash)
                 try:

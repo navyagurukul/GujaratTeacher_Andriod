@@ -40,7 +40,7 @@ class StudentManagementPage(BasePage):
     FATHER_NAME_INPUT = (By.XPATH, "//input[@placeholder=\"Father's Name\"]")
     MOBILE_INPUT = (By.XPATH, "//input[@placeholder='Mobile Number']")
 
-    # 🔥 FIXED DROPDOWNS (no absolute xpath)
+    # FIXED DROPDOWNS (no absolute xpath)
     GENDER_DROPDOWN = (By.XPATH, "//div[contains(text(),'Gender')]/following::div[@tabindex='0'][1]")
     GRADE_OPTIONS = (
         By.XPATH,
@@ -76,7 +76,7 @@ class StudentManagementPage(BasePage):
         print("Opening Management tab...")
         self.click(self.MANAGEMENT_TAB)
         self.wait_for_management_screen()
-        print("✅ Management screen loaded")
+        print("Management screen loaded")
         
     def safe_click(self, locator):
         element = self.wait.until(EC.element_to_be_clickable(locator))
@@ -94,7 +94,7 @@ class StudentManagementPage(BasePage):
                 self.driver.execute_script("arguments[0].click();", card)
                 return
 
-        raise Exception(f"❌ {name} card not found")
+        raise Exception(f"{name} card not found")
         
     def get_visible_back_button(self):
         buttons = self.driver.find_elements(*self.BACK_BTN)
@@ -103,7 +103,7 @@ class StudentManagementPage(BasePage):
             if btn.is_displayed():
                 return btn
 
-        raise Exception("❌ No visible back button found")
+        raise Exception("No visible back button found")
     
     def go_back_to_management(self):
         print("🔙 Clicking Back...")
@@ -119,21 +119,21 @@ class StudentManagementPage(BasePage):
 
             self.driver.execute_script("arguments[0].click();", back_btn)
 
-            # ✅ STRICT VALIDATION
+            # STRICT VALIDATION
             self.wait.until(
                 EC.visibility_of_element_located(self.MANAGEMENT_HEADER)
             )
 
-            print("✅ Back to Management")
+            print("Back to Management")
 
         except Exception as e:
-            print(f"⚠️ Back failed → fallback: {str(e)[:80]}")
+            print(f"Back failed → fallback: {str(e)[:80]}")
 
-            # 🔥 FALLBACK (VERY IMPORTANT)
+            #  FALLBACK (VERY IMPORTANT)
             self.open_management()
             
     def safe_back_to_management(self):
-        print("🔙 Navigating back...")
+        print("Navigating back...")
 
         try:
             back_btn = WebDriverWait(self.driver, 8).until(
@@ -143,10 +143,10 @@ class StudentManagementPage(BasePage):
             self.driver.execute_script("arguments[0].click();", back_btn)
 
             self.wait_for_management_screen()
-            print("✅ Back to Management")
+            print("Back to Management")
 
         except Exception:
-            print("⚠️ Back failed → fallback")
+            print("Back failed → fallback")
             self.open_management()
         
     #  UNIVERSAL DROPDOWN HANDLER
@@ -179,7 +179,7 @@ class StudentManagementPage(BasePage):
         options = self.wait.until( EC.presence_of_all_elements_located((
             By.XPATH, "//div[@tabindex='0']//div[starts-with(normalize-space(),'Grade')]" )))
         if not options:
-            raise Exception("❌ No grade options found")
+            raise Exception("No grade options found")
         option = options[1]
         print(f"Selected: {option.text}")
         self.driver.execute_script("arguments[0].click();", option)
@@ -241,7 +241,7 @@ class StudentManagementPage(BasePage):
         #self.click_submit_review()
         #self.click_confirm()
         #self.click_register_all_students()
-        #print("✅ Registered student successfully")
+        #print("Registered student successfully")
         time.sleep(0.7)
         print("Student Register page opened")
         time.sleep(0.5)

@@ -14,14 +14,14 @@ def driver():
     #is_ci = os.getenv("CI") == "true"
 
     #if is_ci:
-        # print("🚀 Running in CI mode (headless)")
+        # print("Running in CI mode (headless)")
         # options.add_argument("--headless=new")
         #options.add_argument("--window-size=1920,1080")
     #else:
-        #print("🖥 Running in local mode")
+        #print(" Running in local mode")
     options.add_argument("--start-maximized")
 
-    # ✅ Stability fixes (keep these)
+    # Stability fixes (keep these)
     options.add_argument("--disable-notifications")
     options.add_argument("--disable-infobars")
     options.add_argument("--disable-extensions")
@@ -29,14 +29,14 @@ def driver():
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
 
-    # ✅ Prevent renderer issues
+    #  Prevent renderer issues
     options.add_argument("--disable-browser-side-navigation")
     options.add_argument("--disable-features=VizDisplayCompositor")
 
-    # ✅ Use WebDriver Manager (important for CI)
+    # Use WebDriver Manager (important for CI)
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
-    driver.get("https://esteacher.englishgurukul.in/")
+    driver.get("https://teacher.englishgurukul.in/")
 
     driver.set_page_load_timeout(90)
     driver.implicitly_wait(10)
@@ -46,5 +46,5 @@ def driver():
     #if not is_ci:
         #input("Press ENTER to close browser...")
 
-    print("🛑 Closing browser")
+    print(" Closing browser")
     driver.quit()

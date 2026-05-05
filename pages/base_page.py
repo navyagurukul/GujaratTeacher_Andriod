@@ -14,7 +14,7 @@ class BasePage:
                 let overlay = document.querySelector("div[style*='rgba']");
                 if (overlay) overlay.remove();
             """)
-        except:
+        except Exception:
             pass
 
     def scroll_to_element(self, element):
@@ -33,12 +33,12 @@ class BasePage:
                 self.wait.until(EC.element_to_be_clickable(locator))
                 element.click()
                 return
-            except:
+            except Exception:
                 try:
                     element = self.driver.find_element(*locator)
                     self.driver.execute_script("arguments[0].click();", element)
                     return
-                except:
+                except Exception:
                     time.sleep(1)
 
         raise Exception(f"Click failed: {locator}")
@@ -47,7 +47,7 @@ class BasePage:
         try:
             self.scroll_to_element(element)
             element.click()
-        except:
+        except Exception:
             self.driver.execute_script("arguments[0].click();", element)
 
     def send_keys(self, locator, value):
@@ -77,5 +77,5 @@ class BasePage:
         try:
             self.wait.until(EC.visibility_of_element_located(locator))
             return True
-        except:
+        except Exception:
             return False

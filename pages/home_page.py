@@ -26,3 +26,5 @@ class HomePage(BasePage):
 
     def verify_home_loaded(self):
         return self.is_visible(self.HOME_TAB)
+    
+    print("Completed Flow")
