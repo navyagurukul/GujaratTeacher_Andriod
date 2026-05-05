@@ -225,6 +225,7 @@ class StudentManagementPage(BasePage):
 
     def register_student(self):
         self.click(self.REGISTER_CARD)
+        print("Student Register page opening")
 
         #self.send_keys(self.STUDENT_NAME_INPUT, "QA")
         #self.send_keys(self.FATHER_NAME_INPUT, "testing")
@@ -241,7 +242,7 @@ class StudentManagementPage(BasePage):
         #self.click_confirm()
         #self.click_register_all_students()
         #print("✅ Registered student successfully")
-        time.sleep(0.5)
+        time.sleep(1)
         print("Student Register page opened")
         time.sleep(0.5)
         self.safe_back_to_management()

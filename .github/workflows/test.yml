@@ -1,4 +1,4 @@
-name: Teacher Web Automation CI
+name: Gujarat Teacher Web Automation CI   # ✅ renamed
 
 on:
   pull_request:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      TEACHER_WEB: ${{ vars.TEACHER_WEB }}
+      TEACHER_WEB: https://esteacher.englishgurukul.in/   # ✅ updated new project URL
 
     steps:
       - name: Checkout repository
@@ -24,7 +24,6 @@ jobs:
         with:
           python-version: "3.11"
 
-      # ✅ FIX: remove duplicate install step
       - name: Install dependencies
         run: |
           pip install --upgrade pip
@@ -34,31 +33,32 @@ jobs:
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1
 
-      # ✅ Smart test execution based on trigger
+      # Smoke tests for PR
       - name: Run Smoke Tests (PR)
         if: github.event_name == 'pull_request'
         run: |
           pytest -m smoke -n auto --alluredir=allure-results
 
+      # Regression tests for main + nightly
       - name: Run Regression Tests (Main + Nightly)
         if: github.event_name != 'pull_request'
         run: |
           pytest -m regression -n auto --alluredir=allure-results
 
-      # ✅ Allure report generation
+      # Allure report generation
       - name: Generate Allure Report
         run: |
           pip install allure-pytest
           allure generate allure-results --clean -o allure-report
 
-      # ✅ Upload report
+      # Upload report
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: allure-report
 
-      # ✅ Failure debugging
+      # Failure debugging
       - name: Upload screenshots (on failure)
         if: failure()
         uses: actions/upload-artifact@v4

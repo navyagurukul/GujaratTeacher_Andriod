@@ -11,7 +11,7 @@ def test_student_management(driver):
     sm = StudentManagementPage(driver)
 
     login.open()
-    login.login("Sanskruthi School - Nalgonda", "8247282479")
+    login.login("24070609203-NAVA VATAVA PRI. SCH.", "8247208247")
 
     sm.open_management()   # MUST ADD
     sm.register_student()

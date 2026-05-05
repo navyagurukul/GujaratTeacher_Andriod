@@ -31,7 +31,7 @@ def driver():
 def logged_in_driver(driver):
     login = LoginPage(driver)
     login.open()
-    login.login("Sanskruthi School - Nalgonda", "8247282479")
+    login.login("24070609203-NAVA VATAVA PRI. SCH.", "8247208247")
 
     return driver
 
