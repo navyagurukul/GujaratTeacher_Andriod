@@ -13,7 +13,7 @@ def test_home_page(driver):
 
     # Step 1: Open site & login
     login.open()
-    assert login.login("Sanskruthi School - Nalgonda", "8247282479"), "Login Failed"
+    assert login.login("24070609203-NAVA VATAVA PRI. SCH.", "8247208247"), "Login Failed"
 
     # Step 2: Navigate to Home
     home.go_to_home()

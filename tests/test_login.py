@@ -7,4 +7,4 @@ from pages.login_page import LoginPage
 def test_login(driver):
     login = LoginPage(driver)
     login.open()
-    assert login.login("Sanskruthi School - Nalgonda", "8247282479")
+    assert login.login("24070609203-NAVA VATAVA PRI. SCH.", "8247208247")

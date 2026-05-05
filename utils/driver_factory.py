@@ -36,7 +36,7 @@ def driver():
     # ✅ Use WebDriver Manager (important for CI)
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
-    driver.get("https://teacher.englishgurukul.in/")
+    driver.get("https://esteacher.englishgurukul.in/")
 
     driver.set_page_load_timeout(90)
     driver.implicitly_wait(10)
