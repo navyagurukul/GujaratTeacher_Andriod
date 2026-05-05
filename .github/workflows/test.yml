@@ -1,4 +1,4 @@
-name: Gujarat Teacher Web Automation CI   # ✅ renamed
+name: Teacher Web Automation CI
 
 on:
   pull_request:
@@ -9,11 +9,14 @@ on:
     - cron: '0 2 * * *'  # nightly run
 
 jobs:
-  test:
+  # ===================== SMOKE TEST JOB =====================
+  smoke-tests:
+    name: Smoke Tests
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
     env:
-      TEACHER_WEB: https://esteacher.englishgurukul.in/   # ✅ updated new project URL
+      TEACHER_WEB: ${{ vars.TEACHER_WEB }}
 
     steps:
       - name: Checkout repository
@@ -33,37 +36,64 @@ jobs:
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1
 
-      # Smoke tests for PR
-      - name: Run Smoke Tests (PR)
-        if: github.event_name == 'pull_request'
+      - name: Run Smoke Tests
         run: |
           pytest -m smoke -n auto --alluredir=allure-results
 
-      # Regression tests for main + nightly
-      - name: Run Regression Tests (Main + Nightly)
-        if: github.event_name != 'pull_request'
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-allure-report
+          path: allure-results
+
+
+  # ===================== REGRESSION TEST JOB =====================
+  regression-tests:
+    name: Regression Tests
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+
+    env:
+      TEACHER_WEB: https://teacher.englishgurukul.in/
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          playwright install || true
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Run Regression Tests
         run: |
           pytest -m regression -n auto --alluredir=allure-results
 
-      # Allure report generation
       - name: Generate Allure Report
         run: |
           pip install allure-pytest
           allure generate allure-results --clean -o allure-report
 
-      # Upload report
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report
+          name: regression-allure-report
           path: allure-report
 
-      # Failure debugging
       - name: Upload screenshots (on failure)
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: screenshots
+          name: regression-screenshots
           path: |
             *.png
             reports/*.png
