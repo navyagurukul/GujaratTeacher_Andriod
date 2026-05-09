@@ -1,80 +1,46 @@
-name: Teacher Android Automation CI
+name:  Teacher Web Automation CI
 
 on:
   pull_request:
-    branches: ["dev"]     # PR -> Smoke Tests
-
+    branches: ["dev"]   # PR → smoke tests
   push:
-    branches: ["main"]    # Main -> Regression Tests
-
+    branches: ["main","dev"]  # main → regression
   schedule:
-    - cron: "0 2 * * *"   # Nightly Regression Run
-
-  workflow_dispatch:
+    - cron: '0 2 * * *'  # nightly run
 
 jobs:
-
   # ===================== SMOKE TEST JOB =====================
   smoke-tests:
     name: Smoke Tests
-    if: github.event_name == 'pull_request'
-    runs-on: [self-hosted, Windows]
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
 
     env:
-      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.teacher
-      APP_ACTIVITY: com.OritSciencesPrivateLimited.EnglishGurukul.MainActivity
+      TEACHER_WEB: https://teacher.englishgurukul.in/
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
-      # ================= PYTHON =================
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          pip install --upgrade pip
           pip install -r requirements.txt
+          playwright install || true
 
-      # ================= NODE + APPIUM =================
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
 
-      - name: Install Appium
-        run: |
-          npm install -g appium
-          appium -v
-
-      # ================= JAVA =================
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: "temurin"
-          java-version: "17"
-
-      # ================= VERIFY DEVICE =================
-      - name: Verify Connected Device
-        run: |
-          adb devices
-
-      # ================= START APPIUM =================
-      - name: Start Appium Server
-        shell: cmd
-        run: |
-          start /B appium
-          timeout /t 15
-
-      # ================= RUN SMOKE TESTS =================
       - name: Run Smoke Tests
         run: |
-          pytest -m smoke -v -s --alluredir=allure-results
+          pytest -m smoke -n auto --alluredir=allure-results
 
-      # ================= ALLURE REPORT =================
+
       - name: Install Allure CLI
         run: |
           npm install -g allure-commandline --save-dev
@@ -90,76 +56,38 @@ jobs:
           name: smoke-allure-report
           path: allure-report
 
-      # ================= SCREENSHOTS =================
-      - name: Upload Failure Screenshots
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: smoke-failure-screenshots
-          path: screenshots/
-
 
   # ===================== REGRESSION TEST JOB =====================
   regression-tests:
     name: Regression Tests
     if: github.event_name != 'pull_request'
-    runs-on: [self-hosted, Windows]
+    runs-on: ubuntu-latest
 
     env:
-      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.teacher
-      APP_ACTIVITY: com.OritSciencesPrivateLimited.EnglishGurukul.MainActivity
+      TEACHER_WEB: https://teacher.englishgurukul.in/
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
-      # ================= PYTHON =================
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          pip install --upgrade pip
           pip install -r requirements.txt
+          playwright install || true
 
-      # ================= NODE + APPIUM =================
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
 
-      - name: Install Appium
-        run: |
-          npm install -g appium
-          appium -v
-
-      # ================= JAVA =================
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: "temurin"
-          java-version: "17"
-
-      # ================= VERIFY DEVICE =================
-      - name: Verify Connected Device
-        run: |
-          adb devices
-
-      # ================= START APPIUM =================
-      - name: Start Appium Server
-        shell: cmd
-        run: |
-          start /B appium
-          timeout /t 15
-
-      # ================= RUN REGRESSION TESTS =================
       - name: Run Regression Tests
         run: |
-          pytest -m regression -v -s --alluredir=allure-results
+          pytest -m regression -n auto --alluredir=allure-results
 
-      # ================= ALLURE REPORT =================
       - name: Install Allure CLI
         run: |
           npm install -g allure-commandline --save-dev
@@ -175,10 +103,11 @@ jobs:
           name: regression-allure-report
           path: allure-report
 
-      # ================= SCREENSHOTS =================
-      - name: Upload Failure Screenshots
+      - name: Upload screenshots (on failure)
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: regression-failure-screenshots
-          path: screenshots/
+          name: regression-screenshots
+          path: |
+            *.png
+            reports/*.png   ----    this is for web teacher im having for test.yml,  need for andriod teacher,  created these in github/workflow/test.yml and gihub/workflow/act.history.json
