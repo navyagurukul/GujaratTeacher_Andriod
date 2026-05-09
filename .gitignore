@@ -2,16 +2,20 @@
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+
+# pytest
 .pytest_cache/
 
-# Virtual env
+# Virtual environment
 .venv/
+venv/
 env/
 
 # VS Code
 .vscode/
 
-# Allure
+# Allure reports
 allure-results/
 allure-report/
 
@@ -24,9 +28,17 @@ reports/
 
 # Screenshots
 *.png
+*.jpg
+*.jpeg
 
-# Env
+# Environment variables
 .env
 
-# Misc
-*.vsix
+# Packaging
+*.egg-info/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
