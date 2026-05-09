@@ -1,136 +1,322 @@
 name: Teacher Android Automation CI
 
 on:
-  push:
-    branches: ["main", "dev"]
   pull_request:
     branches: ["dev"]
+
+  push:
+    branches: ["main","dev"]
+
   schedule:
-    - cron: "0 2 * * *"   # nightly regression run
+    - cron: "0 2 * * *"
+
+  workflow_dispatch:
 
 jobs:
-  android-tests:
-    name: Android Appium Tests
-    runs-on: ubuntu-latest
+
+  # =========================================================
+  # SMOKE TESTS
+  # =========================================================
+  smoke-tests:
+    name: Smoke Tests
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: [self-hosted, Windows]
 
     env:
+      APPIUM_PORT: 4723
       APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.teacher
       APP_ACTIVITY: com.OritSciencesPrivateLimited.EnglishGurukul.MainActivity
 
     steps:
-      - name: Checkout repo
+
+      # ================= CHECKOUT =================
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       # ================= PYTHON =================
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+      - name: Verify Python
+        shell: powershell
+        run: |
+          python --version
+          pip --version
 
-      - name: Install Python dependencies
+      - name: Install Python Dependencies
+        shell: powershell
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # ================= NODE + APPIUM =================
+      # ================= NODE =================
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18"
 
-      - name: Install Appium
+      - name: Verify Node
+        shell: powershell
         run: |
-          npm install -g appium
+          node -v
+          npm -v
+
+      # ================= APPIUM FIX =================
+      - name: Remove Old Appium
+        shell: powershell
+        run: |
+          npm uninstall -g appium
+
+      - name: Install Stable Appium
+        shell: powershell
+        run: |
+          npm install -g appium@2.11.3
           appium -v
 
+      - name: Remove Old UiAutomator2 Driver
+        shell: powershell
+        run: |
+          appium driver uninstall uiautomator2
+
+      - name: Install Compatible UiAutomator2 Driver
+        shell: powershell
+        run: |
+          appium driver install uiautomator2@2.45.1
+
+      - name: Verify Installed Drivers
+        shell: powershell
+        run: |
+          appium driver list --installed
+
       # ================= JAVA =================
-      - name: Setup JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: "temurin"
-          java-version: "17"
+      - name: Verify Java
+        shell: powershell
+        run: |
+          java -version
+
+      # ================= DEVICE =================
+      - name: Verify Android Device
+        shell: powershell
+        run: |
+          adb devices
+
+      # ================= KILL OLD APPIUM =================
+      - name: Kill Existing Appium
+        shell: powershell
+        run: |
+          $connections = Get-NetTCPConnection -LocalPort 4723 -ErrorAction SilentlyContinue
+
+          if ($connections) {
+            $pids = $connections | Select-Object -ExpandProperty OwningProcess -Unique
+
+            foreach ($processId in $pids) {
+              Stop-Process -Id $processId -Force
+            }
+          }
 
       # ================= START APPIUM =================
-      - name: Start Appium server
+      - name: Start Appium Server
+        shell: powershell
         run: |
-          appium --log-level info &
-          sleep 15
-          
-  # ================= SMOKE =================
-  smoke-tests:
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
+          Start-Process cmd.exe -ArgumentList "/c appium --address 127.0.0.1 --port 4723 > appium.log 2>&1"
+          Start-Sleep -Seconds 20
 
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install dependencies
+      # ================= VERIFY APPIUM =================
+      - name: Verify Appium Server
+        shell: powershell
         run: |
-          pip install -r requirements.txt
+          netstat -ano | findstr 4723
 
-      - name: Install Node + Appium
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
+          try {
+            $response = Invoke-RestMethod -Uri "http://127.0.0.1:4723/status"
+            Write-Host "Appium Server Running"
+            $response
+          }
+          catch {
+            Write-Host "Appium Server Failed"
+            Get-Content appium.log
+            exit 1
+          }
 
-      - run: npm install -g appium
-
-      - name: Start Appium
-        run: appium & sleep 15
-
+      # ================= RUN TESTS =================
       - name: Run Smoke Tests
-        run: pytest -m smoke --alluredir=allure-results
+        shell: powershell
+        run: |
+          pytest -m smoke -v -s --alluredir=allure-results
 
-      - name: Upload Report
+      # ================= ALLURE =================
+      - name: Install Allure
+        shell: powershell
+        run: |
+          npm install -g allure-commandline
+          allure --version
+
+      - name: Generate Allure Report
+        shell: powershell
+        run: |
+          allure generate allure-results --clean -o allure-report
+
+      # ================= REPORTS =================
+      - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
-          name: smoke-report
-          path: allure-results
+          name: smoke-allure-report
+          path: allure-report
 
-
-  # ================= REGRESSION =================
-  regression-tests:
-    if: github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Setup Node + Appium
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-
-      - run: npm install -g appium
-
-      - name: Start Appium
-        run: appium & sleep 15
-
-      - name: Run Regression Tests
-        run: pytest -m regression --alluredir=allure-results
-
-      - name: Upload Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: regression-report
-          path: allure-results
-
-      - name: Upload failure screenshots
+      - name: Upload Failure Screenshots
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: failure-screenshots
+          name: smoke-failure-screenshots
+          path: screenshots/
+
+
+  # =========================================================
+  # REGRESSION TESTS
+  # =========================================================
+  regression-tests:
+    name: Regression Tests
+    if: github.event_name != 'pull_request'
+    runs-on: [self-hosted, Windows]
+
+    env:
+      APPIUM_PORT: 4723
+      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.teacher
+      APP_ACTIVITY: com.OritSciencesPrivateLimited.EnglishGurukul.MainActivity
+
+    steps:
+
+      # ================= CHECKOUT =================
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # ================= PYTHON =================
+      - name: Verify Python
+        shell: powershell
+        run: |
+          python --version
+          pip --version
+
+      - name: Install Python Dependencies
+        shell: powershell
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # ================= NODE =================
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Verify Node
+        shell: powershell
+        run: |
+          node -v
+          npm -v
+
+      # ================= APPIUM FIX =================
+      - name: Remove Old Appium
+        shell: powershell
+        run: |
+          npm uninstall -g appium
+
+      - name: Install Stable Appium
+        shell: powershell
+        run: |
+          npm install -g appium@2.11.3
+          appium -v
+
+      - name: Remove Old UiAutomator2 Driver
+        shell: powershell
+        run: |
+          appium driver uninstall uiautomator2
+
+      - name: Install Compatible UiAutomator2 Driver
+        shell: powershell
+        run: |
+          appium driver install uiautomator2@2.45.1
+
+      - name: Verify Installed Drivers
+        shell: powershell
+        run: |
+          appium driver list --installed
+
+      # ================= JAVA =================
+      - name: Verify Java
+        shell: powershell
+        run: |
+          java -version
+
+      # ================= DEVICE =================
+      - name: Verify Android Device
+        shell: powershell
+        run: |
+          adb devices
+
+      # ================= KILL OLD APPIUM =================
+      - name: Kill Existing Appium
+        shell: powershell
+        run: |
+          $connections = Get-NetTCPConnection -LocalPort 4723 -ErrorAction SilentlyContinue
+
+          if ($connections) {
+            $pids = $connections | Select-Object -ExpandProperty OwningProcess -Unique
+
+            foreach ($processId in $pids) {
+              Stop-Process -Id $processId -Force
+            }
+          }
+
+      # ================= START APPIUM =================
+      - name: Start Appium Server
+        shell: powershell
+        run: |
+          Start-Process cmd.exe -ArgumentList "/c appium --address 127.0.0.1 --port 4723 > appium.log 2>&1"
+          Start-Sleep -Seconds 20
+
+      # ================= VERIFY APPIUM =================
+      - name: Verify Appium Server
+        shell: powershell
+        run: |
+          netstat -ano | findstr 4723
+
+          try {
+            $response = Invoke-RestMethod -Uri "http://127.0.0.1:4723/status"
+            Write-Host "Appium Server Running"
+            $response
+          }
+          catch {
+            Write-Host "Appium Server Failed"
+            Get-Content appium.log
+            exit 1
+          }
+
+      # ================= RUN TESTS =================
+      - name: Run Regression Tests
+        shell: powershell
+        run: |
+          pytest -m regression -v -s --alluredir=allure-results
+
+      # ================= ALLURE =================
+      - name: Install Allure
+        shell: powershell
+        run: |
+          npm install -g allure-commandline
+          allure --version
+
+      - name: Generate Allure Report
+        shell: powershell
+        run: |
+          allure generate allure-results --clean -o allure-report
+
+      # ================= REPORTS =================
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-allure-report
+          path: allure-report
+
+      - name: Upload Failure Screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-failure-screenshots
           path: screenshots/
