@@ -1,46 +1,80 @@
-name:  Teacher Web Automation CI
+name: Teacher Android Automation CI
 
 on:
   pull_request:
-    branches: ["dev"]   # PR → smoke tests
+    branches: ["dev"]     # PR -> Smoke Tests
+
   push:
-    branches: ["main"]  # main → regression
+    branches: ["main"]    # Main -> Regression Tests
+
   schedule:
-    - cron: '0 2 * * *'  # nightly run
+    - cron: "0 2 * * *"   # Nightly Regression Run
+
+  workflow_dispatch:
 
 jobs:
+
   # ===================== SMOKE TEST JOB =====================
   smoke-tests:
     name: Smoke Tests
     if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Windows]
 
     env:
-      TEACHER_WEB: ${{ vars.TEACHER_WEB }}
+      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.teacher
+      APP_ACTIVITY: com.OritSciencesPrivateLimited.EnglishGurukul.MainActivity
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
+      # ================= PYTHON =================
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
-          playwright install || true
 
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
+      # ================= NODE + APPIUM =================
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
 
+      - name: Install Appium
+        run: |
+          npm install -g appium
+          appium -v
+
+      # ================= JAVA =================
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      # ================= VERIFY DEVICE =================
+      - name: Verify Connected Device
+        run: |
+          adb devices
+
+      # ================= START APPIUM =================
+      - name: Start Appium Server
+        shell: cmd
+        run: |
+          start /B appium
+          timeout /t 15
+
+      # ================= RUN SMOKE TESTS =================
       - name: Run Smoke Tests
         run: |
-          pytest -m smoke -n auto --alluredir=allure-results
+          pytest -m smoke -v -s --alluredir=allure-results
 
-
+      # ================= ALLURE REPORT =================
       - name: Install Allure CLI
         run: |
           npm install -g allure-commandline --save-dev
@@ -56,38 +90,76 @@ jobs:
           name: smoke-allure-report
           path: allure-report
 
+      # ================= SCREENSHOTS =================
+      - name: Upload Failure Screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-failure-screenshots
+          path: screenshots/
+
 
   # ===================== REGRESSION TEST JOB =====================
   regression-tests:
     name: Regression Tests
     if: github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Windows]
 
     env:
-      TEACHER_WEB: https://teacher.englishgurukul.in/
+      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.teacher
+      APP_ACTIVITY: com.OritSciencesPrivateLimited.EnglishGurukul.MainActivity
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
+      # ================= PYTHON =================
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
-          playwright install || true
 
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
+      # ================= NODE + APPIUM =================
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
 
+      - name: Install Appium
+        run: |
+          npm install -g appium
+          appium -v
+
+      # ================= JAVA =================
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      # ================= VERIFY DEVICE =================
+      - name: Verify Connected Device
+        run: |
+          adb devices
+
+      # ================= START APPIUM =================
+      - name: Start Appium Server
+        shell: cmd
+        run: |
+          start /B appium
+          timeout /t 15
+
+      # ================= RUN REGRESSION TESTS =================
       - name: Run Regression Tests
         run: |
-          pytest -m regression -n auto --alluredir=allure-results
+          pytest -m regression -v -s --alluredir=allure-results
 
+      # ================= ALLURE REPORT =================
       - name: Install Allure CLI
         run: |
           npm install -g allure-commandline --save-dev
@@ -103,11 +175,10 @@ jobs:
           name: regression-allure-report
           path: allure-report
 
-      - name: Upload screenshots (on failure)
+      # ================= SCREENSHOTS =================
+      - name: Upload Failure Screenshots
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: regression-screenshots
-          path: |
-            *.png
-            reports/*.png
+          name: regression-failure-screenshots
+          path: screenshots/

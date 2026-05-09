@@ -213,24 +213,35 @@ class ClassReportPage(BasePage):
         grades = self.get_all_grades()
 
         for grade in grades:
-            print(f"\n Processing Grade: {grade}")
+
+            print(f"\n📘 Processing Grade: {grade}")
 
             try:
+
+                # select grade
                 self.select_grade(grade)
 
+                # wait until assessment dropdown visible
                 self.wait.until(
-                    lambda d: d.execute_script("return document.readyState") == "complete"
-            )
+                    EC.presence_of_element_located(
+                        self.ASSESSMENT_DROPDOWN
+                    )
+                )
 
                 self.wait.until(
-                    EC.element_to_be_clickable(self.ASSESSMENT_DROPDOWN)
-            )
-                time.sleep(1)
-            # select ALL assessments
+                    EC.element_to_be_clickable(
+                        self.ASSESSMENT_DROPDOWN
+                    )
+                )
+
+                time.sleep(2)
+
+                # select all assessments
                 self.select_all_assessments()
 
             except Exception as e:
-                print(f"Assessment issue for {grade}: {e}")
+
+                print(f"❌ Assessment issue for {grade}: {e}")
 
     # ================= FULL FLOW =================
 
