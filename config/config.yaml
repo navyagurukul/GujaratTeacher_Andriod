@@ -10,9 +10,9 @@ device:
   newCommandTimeout: 300
 
 app:
-  appPackage: "com.OritSciencesPrivateLimited.EnglishGurukul.teacher"
+  appPackage: "com.OritSciencesPrivateLimited.EnglishGurukul.englishshikshateacher"
   appActivity: "com.OritSciencesPrivateLimited.EnglishGurukul.MainActivity"
 
 testdata:
-  school: "Sanskruthi School - Nalgonda"
-  phone: "8247282479"
+  school: "24070609203-NAVA VATAVA PRI. SCH."
+  phone: "8247208247"

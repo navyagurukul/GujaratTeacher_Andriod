@@ -19,7 +19,7 @@ def driver(config):
 
     import subprocess
     subprocess.run(
-        "adb shell am force-stop com.OritSciencesPrivateLimited.EnglishGurukul.teacher",
+        "adb shell am force-stop com.OritSciencesPrivateLimited.EnglishGurukul.englishshikshateacher",
         shell=True
     )
 

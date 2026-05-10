@@ -13,7 +13,7 @@ class LoginPage(BaseMobilePage):
 
     SEARCH_SCHOOL = (AppiumBy.XPATH, "//android.widget.TextView[@text='Search your school']")
     SCHOOL_INPUT = (AppiumBy.XPATH, "//android.widget.EditText[@text='Type here...']")
-    SCHOOL_OPTION = (AppiumBy.XPATH, "//android.widget.TextView[contains(@text,'Sanskruthi School')]")
+    SCHOOL_OPTION = (AppiumBy.XPATH, "//android.widget.TextView[contains(@text,'24070609203-NAVA VATAVA PRI. SCH.')]")
     PHONE_INPUT = (AppiumBy.XPATH, "//android.widget.EditText[contains(@text,'mobile')]")
     LOGIN_BTN = (AppiumBy.XPATH, "//android.widget.TextView[@text='Login']")
     HOME_TEXT = (AppiumBy.XPATH, "//android.widget.TextView[contains(@text,'Home')]")

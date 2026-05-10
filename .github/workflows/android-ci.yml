@@ -24,7 +24,7 @@ jobs:
 
     env:
       APPIUM_PORT: 4723
-      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.teacher
+      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.englishshikshateacher
       APP_ACTIVITY: com.OritSciencesPrivateLimited.EnglishGurukul.MainActivity
 
     steps:
@@ -178,7 +178,7 @@ jobs:
 
     env:
       APPIUM_PORT: 4723
-      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.teacher
+      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.englishshikshateacher
       APP_ACTIVITY: com.OritSciencesPrivateLimited.EnglishGurukul.MainActivity
 
     steps:
