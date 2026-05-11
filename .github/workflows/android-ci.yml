@@ -167,6 +167,36 @@ jobs:
           name: smoke-failure-screenshots
           path: screenshots/
 
+      - name: Preserve Allure History
+        shell: powershell
+        run: |
+          if (Test-Path "allure-report/history") {
+            Copy-Item -Recurse -Force allure-report/history allure-results/history
+          }
+
+      - name: Add Executor Info
+        shell: powershell
+        run: |
+          @"
+          {
+            "name": "GitHub Actions",
+            "type": "github",
+            "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "buildOrder": "${{ github.run_number }}",
+            "buildName": "${{ github.workflow }}",
+            "buildUrl": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }
+          "@ | Out-File -Encoding utf8 allure-results/executor.json
+
+      - name: Add Environment Info
+        shell: powershell
+        run: |
+          @"
+          OS=Windows
+          Device=Android
+          Automation=Appium
+          Environment=QA
+          "@ | Out-File -Encoding utf8 allure-results/environment.properties
 
   # =========================================================
   # REGRESSION TESTS
@@ -320,3 +350,34 @@ jobs:
         with:
           name: regression-failure-screenshots
           path: screenshots/
+
+      - name: Preserve Allure History
+        shell: powershell
+        run: |
+          if (Test-Path "allure-report/history") {
+            Copy-Item -Recurse -Force allure-report/history allure-results/history
+          }
+
+      - name: Add Executor Info
+        shell: powershell
+        run: |
+          @"
+          {
+            "name": "GitHub Actions",
+            "type": "github",
+            "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "buildOrder": "${{ github.run_number }}",
+            "buildName": "${{ github.workflow }}",
+            "buildUrl": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }
+          "@ | Out-File -Encoding utf8 allure-results/executor.json
+
+      - name: Add Environment Info
+        shell: powershell
+        run: |
+          @"
+          OS=Windows
+          Device=Android
+          Automation=Appium
+          Environment=QA
+          "@ | Out-File -Encoding utf8 allure-results/environment.properties
