@@ -76,7 +76,7 @@ class StudentManagementPage(BaseMobilePage):
 
     GRADE_OPTIONS = (
         AppiumBy.XPATH,
-        "//android.widget.TextView[contains(@text,'Grade')]"
+        "//android.widget.TextView[contains(@text,'Grade') or contains(@text,'Class') or contains(@text,'CT')]"
     )
 
     SUBMIT_REVIEW_BTN = (
@@ -249,7 +249,7 @@ class StudentManagementPage(BaseMobilePage):
         options = self.wait.until(
             EC.presence_of_all_elements_located((
                 AppiumBy.XPATH,
-                "//android.widget.TextView[contains(@text,'Grade')]"
+                "//android.widget.TextView[contains(@text,'Grade') or contains(@text,'Class') or contains(@text,'CT')]"
             ))
         )
 
@@ -308,7 +308,7 @@ class StudentManagementPage(BaseMobilePage):
                     }
                 )
 
-                time.sleep(1)
+                time.sleep(0.5)
 
                 try:
                     btn.click()

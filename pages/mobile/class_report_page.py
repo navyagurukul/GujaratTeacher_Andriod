@@ -41,14 +41,14 @@ class ClassReportPage(BaseMobilePage):
         "android.widget.Switch"
     )
 
-    ASSESSMENT_DROPDOWN = (
+    PRE_TEST_DROPDOWN = (
         AppiumBy.XPATH,
-        "//android.view.ViewGroup[contains(@content-desc,'Assessment') or contains(@content-desc,'Assesment')]"
+        "//android.view.ViewGroup[contains(@content-desc,'EG - Pre-test') or contains(@content-desc,'EG Pre-test')]"
     )
 
-    ASSESSMENT_OPTIONS = (
+    PRE_TEST_OPTIONS = (
         AppiumBy.XPATH,
-        "//android.widget.TextView[contains(@text,'Assessment') or contains(@text,'Assesment')]"
+        "//android.widget.TextView[contains(@text,'EG - Pre-test') or contains(@text,'EG Pre-test') ]"
     )
 
     # ================= ACTIONS =================
@@ -167,38 +167,38 @@ class ClassReportPage(BaseMobilePage):
 
     # ================= ASSESSMENTS =================
 
-    def open_assessment_dropdown(self):
+    def open_pre_test_dropdown(self):
         dropdown = self.wait.until(
-            EC.element_to_be_clickable(self.ASSESSMENT_DROPDOWN)
+            EC.element_to_be_clickable(self.PRE_TEST_DROPDOWN)
         )
         dropdown.click()
 
-        print("Assessment dropdown opened")
+        print("PRE TEST dropdown opened")
         time.sleep(1)
 
-    def get_assessment_names(self):
-        self.open_assessment_dropdown()
+    def get_pre_test_names(self):
+        self.open_pre_test_dropdown()
 
-        options = self.driver.find_elements(*self.ASSESSMENT_OPTIONS)
+        options = self.driver.find_elements(*self.PRE_TEST_OPTIONS)
 
         names = [o.text for o in options if o.text.strip()]
-        print(f"Assessments: {names}")
+        print(f"EG - Pre-test: {names}")
 
         return names
 
-    def select_all_assessments(self):
+    def select_all_PRE_TEST(self):
 
         selected = set()
 
         while True:
 
             # open dropdown
-            self.open_assessment_dropdown()
+            self.open_pre_test_dropdown()
 
             time.sleep(1)
 
             # get all visible assessments
-            options = self.driver.find_elements(*self.ASSESSMENT_OPTIONS)
+            options = self.driver.find_elements(*self.PRE_TEST_OPTIONS)
 
             names = [
                 o.text.strip()
@@ -224,12 +224,12 @@ class ClassReportPage(BaseMobilePage):
             # all done
             if not next_item:
 
-                print("✅ All assessments selected")
+                print("✅ All PRE TEST selected")
 
                 # close dropdown / return back
                 self.driver.back()
 
-                print("↩️ Returned back after selecting all assessments")
+                print("↩️ Returned back after selecting all PRETEST")
 
                 return
 
@@ -258,7 +258,7 @@ class ClassReportPage(BaseMobilePage):
 
                 return
 
-    def select_assessment_for_each_grade(self):
+    def select_pre_test_for_each_grade(self):
 
         # open grade dropdown once
         grades = self.get_all_grades()
@@ -275,22 +275,22 @@ class ClassReportPage(BaseMobilePage):
                 # wait for assessment dropdown
                 self.wait.until(
                     EC.presence_of_element_located(
-                        self.ASSESSMENT_DROPDOWN
+                        self.PRE_TEST_DROPDOWN
                     )
                 )
 
                 self.wait.until(
                     EC.element_to_be_clickable(
-                        self.ASSESSMENT_DROPDOWN
+                        self.PRE_TEST_DROPDOWN
                     )
                 )
 
                 time.sleep(2)
 
                 # select all assessments
-                self.select_all_assessments()
+                self.select_all_PRE_TEST()
 
-                print(f"✅ Completed assessments for {grade}")
+                print(f"✅ Completed pre_test for {grade}")
 
                 # reopen dropdown except for last grade
                 if index != len(grades) - 1:
@@ -305,7 +305,7 @@ class ClassReportPage(BaseMobilePage):
 
             except Exception as e:
 
-                print(f"❌ Assessment issue for {grade}: {e}")
+                print(f"❌ pre test issue for {grade}: {e}")
 
     # ================= FULL FLOW =================
 
@@ -315,6 +315,6 @@ class ClassReportPage(BaseMobilePage):
         self.toggle_total_monthly()
         self.enable_test_report()
         #self.select_all_grades()
-        self.select_assessment_for_each_grade()
+        self.select_pre_test_for_each_grade()
 
         print("Completed Class Report flow")
