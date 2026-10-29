@@ -1,0 +1,114 @@
+"""Test data for the teacher app regression suite.
+
+This is the **English Shiksha Teacher (Gujarat)** app (ES Teacher). It talks to
+the Gujarat backend, so its schools and teachers are not the EG Teacher ones.
+
+IMPORTANT: All tests use **24071203646-INDIRANAGAR PUBLIC SCHOOL** with mobile
+6326326326. Do not switch to any other school — this is a fixed convention for
+this app's QA.
+"""
+from __future__ import annotations
+
+import os
+
+# The one school every test logs into. SCHOOL_SEARCH is what we type into the
+# picker's search box; SCHOOL_NAME is the exact list row we tap.
+SCHOOL_SEARCH = "24071203646"
+SCHOOL_NAME = "24071203646-INDIRANAGAR PUBLIC SCHOOL"
+
+# Teacher used for login. Already registered at INDIRANAGAR; the
+# login-or-register flow only falls back to REGISTER if that ever changes.
+TEACHER_MOBILE = "6326326326"
+TEACHER_NAME = "QA Automation Account"
+TEACHER_LANGUAGE = "English"
+
+# Teacher license code for INDIRANAGAR (only used by the REGISTER flow). Not
+# known yet; set TEACHER_LICENSE_CODE if the number ever needs re-registering.
+LICENSE_CODE = os.getenv("TEACHER_LICENSE_CODE", "")
+
+# Inputs used by login validation tests.
+INVALID_MOBILE_SHORT = "12345"
+NON_DIGIT_MOBILE = "abcdefghij"
+
+# Copy shown by the app (used for assertions).
+class Text:
+    SIGN_IN_HEADING = "Sign in to continue"
+    # Optional-update dialog shown at launch when the build is behind the store
+    # ("A new version (2.5.4) of the app is available..."). SKIP keeps testing
+    # the installed build; UPDATE would leave the app for the Play Store.
+    UPDATE_DIALOG_TITLE = "Update available"
+    UPDATE_SKIP = "SKIP"
+    LOGIN_BUTTON = "LOG IN"
+    REGISTER_BUTTON = "REGISTER"
+    MOBILE_HINT = "10-digit mobile number"
+    SELECT_SCHOOL_HINT = "Select school"
+    SEARCH_SCHOOL_HINT = "Search school"
+
+    # Validation / snackbar messages.
+    MOBILE_REQUIRED = "Mobile number is required"
+    MOBILE_INVALID = "Enter a valid 10-digit number"
+    SCHOOL_REQUIRED = "Please select a school"
+
+    # License dialog (REGISTER flow).
+    LICENSE_TITLE = "Enter License Code"
+    LICENSE_CONTINUE = "CONTINUE"
+    LICENSE_CANCEL = "CANCEL"
+
+    # Register screen ("Create your account").
+    REGISTER_TITLE = "Create your account"
+    SELECT_LANGUAGE_HINT = "Select language"
+    REGISTER_SUBMIT = "REGISTER"
+    BACK_TO_LOGIN = "BACK TO LOGIN"
+
+    # Create-PIN step that ends registration (v2.5+, set_pin_screen.dart).
+    PIN_TITLE = "Create your PIN"
+    PIN_SAVE = "SAVE PIN"
+    PIN_LATER = "SET UP LATER"
+
+    # Home / shell after a successful login.
+    HOME_TITLE = "Welcome!"
+
+    # Home-dashboard boxes (labels are rendered UPPERCASE).
+    BOX_LESSON_PLAN = "LESSON PLAN"
+    BOX_CLASS_REPORT = "CLASS REPORT"
+    BOX_STUDENT_REPORT = "STUDENT REPORT"
+    BOX_MANAGEMENT = "MANAGEMENT"
+    HOME_HEADER = "TEACHER HOME"
+
+    # School-summary card on the home dashboard. The legend renders each row as
+    # a label node followed by a separate count node ("Remaining: " then "78").
+    LEGEND_REGISTERED = "Registered"
+    LEGEND_REMAINING = "Remaining"
+
+    # Section header titles shown in the shell app-bar per destination.
+    TITLE_LESSON_PLAN = "Lesson Plan"
+    TITLE_CLASS_REPORT = "Class Report"
+    TITLE_STUDENT_REPORT = "Student Report"
+    TITLE_MANAGEMENT = "Student Management"
+
+    # Lesson Plan screen.
+    SELECT_CLASS_HINT = "Select class"
+    LESSON_PDF_LABEL = "LESSON PDF"
+    VIDEOS_LABEL = "VIDEOS"
+    # The viewer's app-bar title merges into one semantics node,
+    # "<title>\nPage <n> of <total>", and the indicator only appears once the
+    # document is paginated — so it proves the PDF actually rendered.
+    PDF_PAGE_INDICATOR = "Page 1 of"
+    PDF_BOOKMARKS = "Bookmarks"   # app-bar action, unique to the PDF viewer
+    PDF_OPEN_ERROR = "Couldn't open this PDF."
+    VIDEO_PLAY_ERROR = "Couldn't play this video."
+
+    # Bottom-nav labels.
+    NAV_HOME = "Home"
+    NAV_LESSONS = "Lessons"
+    NAV_CLASS = "Class"
+    NAV_STUDENTS = "Students"
+    NAV_MANAGE = "Manage"
+
+    # End-drawer menu items.
+    MENU_PROFILE = "Profile"
+    MENU_STAR_ARENA = "Star Arena"
+    MENU_TEST = "Test"
+    MENU_ZOOM = "Zoom Training"
+    MENU_RESET_PIN = "Reset PIN"
+    MENU_LOGOUT = "Logout"

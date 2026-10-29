@@ -1,44 +1,13 @@
 # Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# pytest
-.pytest_cache/
-
-# Virtual environment
+*.py[cod]
 .venv/
 venv/
-env/
-
-# VS Code
-.vscode/
-
-# Allure reports
-allure-results/
-allure-report/
-
-# Reports
-reports/
-*.html
-
-# Logs
-*.log
-
-# Screenshots
-*.png
-*.jpg
-*.jpeg
-
-# Environment variables
 .env
 
-# Packaging
-*.egg-info/
-dist/
-build/
+# Test artifacts (keep the folder, ignore its contents)
+reports/*
+!reports/.gitkeep
 
-# OS files
-.DS_Store
-Thumbs.db
+# APKs (don't commit binaries)
+apps/*.apk

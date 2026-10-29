@@ -1,0 +1,262 @@
+name: ES Teacher - Nightly Full Suite (self-hosted, real device)
+
+# Runs the whole scenario suite (every marker EXCEPT `heavy`) on the physical
+# Pixel 4a via the self-hosted Windows runner, then posts two Slack messages:
+#   1. a full-run summary (all scenarios: pass/fail/skip + failing tests)
+#   2. the familiar per-area media summary (Lesson Plans / PDFs / Videos)
+# Allure + pytest-html reports and failure screenshots upload as artifacts.
+#
+# The `heavy` sweep (open every lesson through the UI) is intentionally excluded
+# — on a single device it runs for hours. Trigger it on demand via the
+# "Android UI Tests (emulator)" workflow or a dedicated heavy run.
+#
+# Requires: an online self-hosted runner labelled [self-hosted, Windows] with the
+# Pixel 4a connected (adb) and Python/Node/Java on PATH, and the repo secret
+# SLACK_WEBHOOK_URL.
+
+on:
+  schedule:
+    - cron: "30 0 * * *" # 06:00 IST (EG Teacher full suite runs at 07:30)
+  workflow_dispatch:
+    inputs:
+      markers:
+        description: "pytest -m expression (default: everything except heavy)"
+        required: false
+        default: "not heavy"
+
+jobs:
+  full-suite:
+    name: ES Teacher - Full suite on Pixel 4a
+    runs-on: [self-hosted, Windows]
+    timeout-minutes: 210
+    env:
+      APP_PACKAGE: com.OritSciencesPrivateLimited.EnglishGurukul.englishshikshateacher
+      # Pin the QA device so a second attached device can't be picked by mistake.
+      UDID: "18311JEC201190"
+      DEVICE_NAME: "Pixel 4a"
+      MARKERS: ${{ github.event.inputs.markers || 'not heavy' }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Python dependencies
+        shell: powershell
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # One Pixel 4a serves both teacher repos (EG Teacher and ES Teacher), each
+      # with its own runner on this PC. Take a machine-wide lock so two runs never
+      # drive the phone - or kill each other's Appium on 4723 - at the same time.
+      - name: Wait for the QA phone
+        shell: powershell
+        timeout-minutes: 120
+        run: |
+          $lock = 'C:\ProgramData\eg-qa\pixel4a.lock'
+          New-Item -ItemType Directory -Force (Split-Path $lock) | Out-Null
+          $me = "$env:GITHUB_REPOSITORY run $env:GITHUB_RUN_ID"
+          while ($true) {
+            # A lock older than 4h is from a run that died without releasing it.
+            if ((Test-Path $lock) -and ((Get-Date) - (Get-Item $lock).LastWriteTime).TotalHours -gt 4) {
+              Write-Host "Removing stale lock: $(Get-Content $lock -Raw)"
+              Remove-Item $lock -Force -ErrorAction SilentlyContinue
+            }
+            try {
+              # CreateNew fails if the file exists, so taking the lock is atomic.
+              $f = [IO.File]::Open($lock, 'CreateNew', 'Write', 'None')
+              $b = [Text.Encoding]::UTF8.GetBytes($me); $f.Write($b, 0, $b.Length); $f.Close()
+              Write-Host "QA phone locked for $me"; break
+            } catch {
+              Write-Host "QA phone busy ($(Get-Content $lock -Raw -ErrorAction SilentlyContinue)) - waiting..."
+              Start-Sleep -Seconds 60
+            }
+          }
+
+      # Must run BEFORE the driver install: a server left over from an earlier
+      # run keeps a file lock on .appium\node_modules\appium-uiautomator2-driver,
+      # which makes `driver uninstall`/`install` fail with EPERM mid-way and
+      # leaves the machine with no usable UiAutomator2 driver.
+      - name: Kill any Appium already on 4723
+        shell: powershell
+        run: |
+          $conns = Get-NetTCPConnection -LocalPort 4723 -ErrorAction SilentlyContinue
+          if ($conns) {
+            $conns | Select-Object -ExpandProperty OwningProcess -Unique |
+              ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }
+            Start-Sleep -Seconds 3
+          }
+
+      - name: Ensure Appium 2.11.3 + UiAutomator2 2.45.1
+        shell: powershell
+        env:
+          # The driver's postinstall downloads Chromedriver, which fails on this
+          # runner (ENOTEMPTY on its temp dir) and takes the whole driver install
+          # down with it. The app under test is native Flutter with no webview,
+          # so Chromedriver is never used.
+          APPIUM_SKIP_CHROMEDRIVER_INSTALL: "1"
+        run: |
+          # Appium prints progress to stderr; under PowerShell's default
+          # ErrorActionPreference=stop that would fail the step early.
+          $ErrorActionPreference = 'Continue'
+
+          # `driver list` colorizes its output, which leaves ANSI escapes on
+          # either side of the '@' (ESC[33m uiautomator2 ESC[39m @ ESC[33m
+          # 2.45.1 ESC[39m). Matching the raw text for "uiautomator2@2.45.1"
+          # can therefore never succeed, and the gate below failed the job with
+          # the driver correctly installed. Strip the escapes before matching.
+          $esc = [char]27
+          function Get-InstalledDrivers {
+            (appium driver list --installed 2>&1 | Out-String) -replace "$esc\[[0-9;]*m", ''
+          }
+
+          npm install -g appium@2.11.3 2>&1 | Write-Host
+          if ((Get-InstalledDrivers) -notmatch "uiautomator2@2\.45\.1") {
+            appium driver uninstall uiautomator2 2>&1 | Out-Null
+            appium driver install uiautomator2@2.45.1 2>&1 | Write-Host
+          }
+          appium -v 2>&1 | Write-Host
+
+          # Gate the run on the driver actually being there. Without this the
+          # step goes green and every test fails an hour later with
+          # "Could not find a driver for automationName 'UiAutomator2'".
+          $installed = Get-InstalledDrivers
+          Write-Host $installed
+          if ($installed -notmatch "uiautomator2@2\.45\.1") {
+            Write-Host "UiAutomator2 2.45.1 is not installed - no point running the suite."
+            exit 1
+          }
+
+      - name: Verify device is connected
+        shell: powershell
+        # adb can wedge when the phone is attached but USB debugging is off/unauthorised;
+        # fail in minutes instead of hanging until the job timeout cancels the whole run.
+        timeout-minutes: 4
+        run: |
+          $ErrorActionPreference = 'Continue'
+          # Start the adb server on its own first. If `adb devices` has to spawn it
+          # inside the pipe below, the server inherits the pipe and holds it open,
+          # so Out-String never returns. Not `Start-Process -Wait` either: it also
+          # waits for the server it spawns, which never exits.
+          $p = Start-Process adb -ArgumentList 'start-server' -WindowStyle Hidden -PassThru
+          [void]$p.WaitForExit(60000)
+          # The phone can sit "unauthorized" for a few seconds after the server
+          # starts, and its USB link sometimes drops to "offline", which waiting
+          # alone never clears - `adb reconnect` does. Allow up to ~2 minutes.
+          for ($i = 0; $i -lt 60; $i++) {
+            $out = (adb devices 2>&1 | Out-String)
+            if ($out -match "\bdevice(\r?\n|$)") { break }
+            if ($i % 10 -eq 5) { Write-Host "Not ready yet:"; Write-Host $out; adb reconnect offline 2>&1 | Write-Host }
+            Start-Sleep -Seconds 2
+          }
+          Write-Host $out
+          if ($out -notmatch "\bdevice(\r?\n|$)") { Write-Host "No device attached - check the Pixel 4a cable and that USB debugging is ON and this PC is authorised"; exit 1 }
+
+      - name: Start Appium server
+        shell: powershell
+        run: |
+          Start-Process cmd.exe -ArgumentList "/c appium --address 127.0.0.1 --port 4723 > appium.log 2>&1"
+          Start-Sleep -Seconds 20
+
+      - name: Verify Appium is up
+        shell: powershell
+        run: |
+          try {
+            $r = Invoke-RestMethod -Uri "http://127.0.0.1:4723/status"
+            Write-Host "Appium ready"; $r | ConvertTo-Json -Depth 4
+          } catch {
+            Write-Host "Appium failed to start"; Get-Content appium.log; exit 1
+          }
+
+      - name: Run full suite (all scenarios except heavy)
+        continue-on-error: true
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          $PSNativeCommandUseErrorActionPreference = $false
+          pytest -m "$env:MARKERS" --reruns 1 --reruns-delay 5 `
+            --alluredir=allure-results --junitxml=reports/junit_full.xml
+          $code = $LASTEXITCODE
+          "PYTEST_EXIT=$code" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host "pytest exit: $code"
+          exit 0
+
+      - name: Post full-run summary to Slack
+        if: always()
+        continue-on-error: true
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          python -m utils.slack_full_summary reports/junit_full.xml --scope "Play Store app on the QA phone, all scenarios (-m '$env:MARKERS')"
+          exit 0
+
+      - name: Post media per-area summary to Slack
+        if: always()
+        continue-on-error: true
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          python run_daily.py --audit-only --no-assessments
+          exit 0
+
+      - name: Generate Allure report
+        if: always()
+        continue-on-error: true
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          npm install -g allure-commandline 2>&1 | Write-Host
+          allure generate allure-results --clean -o allure-report 2>&1 | Write-Host
+          exit 0
+
+      - name: Upload reports (Allure + HTML + Appium log)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-reports
+          path: |
+            allure-report
+            reports/report.html
+            reports/junit_full.xml
+            appium.log
+          if-no-files-found: ignore
+
+      - name: Upload failure screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-failure-screenshots
+          path: reports/screenshots/
+          if-no-files-found: ignore
+
+      - name: Stop Appium
+        if: always()
+        shell: powershell
+        run: |
+          $conns = Get-NetTCPConnection -LocalPort 4723 -ErrorAction SilentlyContinue
+          if ($conns) {
+            $conns | Select-Object -ExpandProperty OwningProcess -Unique |
+              ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }
+          }
+
+      - name: Release the QA phone
+        if: always()
+        shell: powershell
+        run: |
+          $lock = 'C:\ProgramData\eg-qa\pixel4a.lock'
+          if ((Get-Content $lock -Raw -ErrorAction SilentlyContinue) -eq "$env:GITHUB_REPOSITORY run $env:GITHUB_RUN_ID") {
+            Remove-Item $lock -Force
+          }
+
+      - name: Fail job if any scenario failed
+        if: always()
+        shell: powershell
+        run: |
+          if ("$env:PYTEST_EXIT" -ne "0") {
+            Write-Host "Scenarios failed (pytest exit $env:PYTEST_EXIT)"; exit 1
+          }
+          Write-Host "All scenarios passed"
