@@ -13,7 +13,7 @@ special build is required.
 
 - **Stack:** Appium 2 · UiAutomator2 · Python · pytest · Page Object Model
 - **Convention:** every test logs in with **24071203646-INDIRANAGAR PUBLIC
-  SCHOOL** / mobile **6326326326**. Do not switch schools.
+  SCHOOL** / mobile **8282828181**. Do not switch schools.
 - **Backend:** `EsTeacherApp` in the remote base-URL config (the Gujarat API).
 - **Shared phone:** the EG and ES device workflows take a lock
   (`C:\ProgramData\eg-qa\pixel4a.lock`) so only one drives the Pixel at a time.

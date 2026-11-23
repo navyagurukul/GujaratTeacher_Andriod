@@ -4,7 +4,7 @@ This is the **English Shiksha Teacher (Gujarat)** app (ES Teacher). It talks to
 the Gujarat backend, so its schools and teachers are not the EG Teacher ones.
 
 IMPORTANT: All tests use **24071203646-INDIRANAGAR PUBLIC SCHOOL** with mobile
-6326326326. Do not switch to any other school — this is a fixed convention for
+8282828181. Do not switch to any other school — this is a fixed convention for
 this app's QA.
 """
 from __future__ import annotations
@@ -18,7 +18,7 @@ SCHOOL_NAME = "24071203646-INDIRANAGAR PUBLIC SCHOOL"
 
 # Teacher used for login. Already registered at INDIRANAGAR; the
 # login-or-register flow only falls back to REGISTER if that ever changes.
-TEACHER_MOBILE = "6326326326"
+TEACHER_MOBILE = "8282828181"
 TEACHER_NAME = "QA Automation Account"
 TEACHER_LANGUAGE = "English"
 
